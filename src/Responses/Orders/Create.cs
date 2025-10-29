@@ -1,6 +1,6 @@
+using BugStore.Models;
+
 namespace BugStore.Responses.Orders;
 
-public class Create
-{
-    
-}
+public class Create(Order? data, int statusCode = 201, string message = "Pedido criado com sucesso.")
+    : Response<Order>(data, statusCode, message);

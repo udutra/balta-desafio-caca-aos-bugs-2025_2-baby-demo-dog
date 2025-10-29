@@ -1,6 +1,7 @@
+using BugStore.Models;
+
 namespace BugStore.Responses.Products;
 
-public class Delete
-{
-    
-}
+public class Delete(Product? data, int statusCode = Configuration.DefaultStatusCode,
+    string message = "Produto removido com sucesso.")
+    : Response<Product>(data, statusCode, message);

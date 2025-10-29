@@ -1,6 +1,5 @@
 namespace BugStore.Requests.Customers;
 
-public class Get
-{
+public class Get : PagedRequest{
     
 }
