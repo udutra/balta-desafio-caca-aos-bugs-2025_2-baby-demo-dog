@@ -3,7 +3,6 @@ using BugStore.Handlers.Interfaces;
 using BugStore.Models;
 using BugStore.Requests.Customers;
 using BugStore.Responses.Customers;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BugStore.Handlers.Customers;

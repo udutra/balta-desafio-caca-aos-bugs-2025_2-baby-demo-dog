@@ -16,9 +16,9 @@ namespace BugStore.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "NVARCHAR", maxLength: 150, nullable: false),
-                    Email = table.Column<string>(type: "NVARCHAR", maxLength: 150, nullable: false),
-                    Phone = table.Column<string>(type: "NVARCHAR", maxLength: 11, nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
+                    Phone = table.Column<string>(type: "TEXT", maxLength: 11, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -31,10 +31,10 @@ namespace BugStore.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Title = table.Column<string>(type: "NVARCHAR", maxLength: 180, nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Slug = table.Column<string>(type: "NVARCHAR", maxLength: 180, nullable: false),
-                    Price = table.Column<decimal>(type: "MONEY", nullable: false)
+                    Title = table.Column<string>(type: "TEXT", maxLength: 180, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 180, nullable: false),
+                    Price = table.Column<decimal>(type: "DECIMAL(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,8 +68,8 @@ namespace BugStore.Data.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     OrderId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    Total = table.Column<decimal>(type: "DECIMAL", nullable: false),
-                    ProductId = table.Column<Guid>(type: "VARCHAR", maxLength: 160, nullable: false)
+                    Total = table.Column<decimal>(type: "DECIMAL(18,2)", nullable: false),
+                    ProductId = table.Column<Guid>(type: "TEXT", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,6 +89,23 @@ namespace BugStore.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Customers_Email",
+                table: "Customers",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_Name",
+                table: "Customers",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_Phone",
+                table: "Customers",
+                column: "Phone",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderLines_OrderId",
                 table: "OrderLines",
                 column: "OrderId");
@@ -102,6 +119,17 @@ namespace BugStore.Data.Migrations
                 name: "IX_Orders_CustomerId",
                 table: "Orders",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_Slug",
+                table: "Products",
+                column: "Slug",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_Title",
+                table: "Products",
+                column: "Title");
         }
 
         /// <inheritdoc />

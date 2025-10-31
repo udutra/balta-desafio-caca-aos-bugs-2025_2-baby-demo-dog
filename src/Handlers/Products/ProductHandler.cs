@@ -49,7 +49,7 @@ public class ProductHandler(AppDbContext context) : IHandlerProduct{
         }
     }
 
-    public async Task<GetAllProductResponse> GetAllProductsAsync(GetAllProductsRequest request,
+    public async Task<GetAllProductsResponse> GetAllProductsAsync(GetAllProductsRequest request,
         CancellationToken cancellationToken = default){
 
         try{
@@ -57,13 +57,13 @@ public class ProductHandler(AppDbContext context) : IHandlerProduct{
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
-            return new GetAllProductResponse(products);
+            return new GetAllProductsResponse(products);
         }
         catch (OperationCanceledException){
-            return new GetAllProductResponse([], 499, "Operação cancelada.");
+            return new GetAllProductsResponse([], 499, "Operação cancelada.");
         }
         catch{
-            return new GetAllProductResponse([], 500,
+            return new GetAllProductsResponse([], 500,
                 "Erro ao listar os produtos. ErroCod: PH0003");
         }
     }

@@ -1,5 +1,6 @@
 using BugStore.Data;
 using BugStore.Handlers.Customers;
+using BugStore.Handlers.Interfaces;
 using BugStore.Handlers.Orders;
 using BugStore.Handlers.Products;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +22,12 @@ public static class BuilderExtension{
     public static void AddDataContexts(this WebApplicationBuilder builder){
         builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite(Configuration.ConnectionString));
     }
+
     public static void AddServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<CustomerHandler>();
-        builder.Services.AddScoped<OrderHandler>();
-        builder.Services.AddScoped<ProductHandler>();
+        builder.Services.AddScoped<IHandlerCustomer, CustomerHandler>();
+        builder.Services.AddScoped<IHandlerOrder, OrderHandler>();
+        builder.Services.AddScoped<IHandlerProduct, ProductHandler>();
 
     }
     public static void AddCrossOrigin(this WebApplicationBuilder builder)

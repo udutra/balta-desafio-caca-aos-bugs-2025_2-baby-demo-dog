@@ -15,13 +15,25 @@ public class OrderLineMapping: IEntityTypeConfiguration<OrderLine>{
 
         builder.Property(x => x.Total)
             .IsRequired()
-            .HasColumnType("DECIMAL");
+            .HasColumnType("DECIMAL(18,2)");
 
         builder.Property(x => x.ProductId)
             .IsRequired()
-            .HasColumnType("VARCHAR")
+            .HasColumnType("TEXT")
             .HasMaxLength(160);
 
-    }
+        builder.HasIndex(x => x.ProductId);
 
+        builder.HasOne(x => x.Order)
+            .WithMany()
+            .HasForeignKey(x => x.OrderId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+
+        builder.HasOne(x => x.Product)
+            .WithMany()
+            .HasForeignKey(x => x.ProductId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+    }
 }

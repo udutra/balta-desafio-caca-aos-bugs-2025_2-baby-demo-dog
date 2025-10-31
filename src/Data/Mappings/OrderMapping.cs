@@ -20,5 +20,19 @@ public class OrderMapping : IEntityTypeConfiguration<Order>{
 
         builder.Property(x => x.UpdatedAt)
             .IsRequired();
+
+        builder.HasIndex(x => x.CustomerId);
+
+        builder.HasOne(x => x.Customer)
+            .WithMany()
+            .HasForeignKey(x => x.CustomerId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+
+        builder.HasMany(x => x.Lines)
+            .WithOne(x => x.Order)
+            .HasForeignKey(x => x.OrderId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
     }
 }

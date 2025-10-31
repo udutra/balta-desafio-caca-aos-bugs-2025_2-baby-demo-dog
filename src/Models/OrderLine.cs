@@ -7,4 +7,5 @@ public class OrderLine(Guid orderId, int quantity, decimal total, Guid productId
     public decimal Total { get; set; } = total;
     public Guid ProductId { get; set; } = productId;
     public Product? Product { get; set; }
+    public Order? Order { get; set; }
 }

@@ -11,16 +11,24 @@ public class ProductMapping : IEntityTypeConfiguration<Product>{
 
         builder.Property(x => x.Title)
             .IsRequired()
-            .HasColumnType("NVARCHAR")
+            .HasColumnType("TEXT")
             .HasMaxLength(180);
+
+        builder.Property(x => x.Description)
+            .IsRequired()
+            .HasColumnType("TEXT")
+            .HasMaxLength(1000);
 
         builder.Property(x => x.Slug)
             .IsRequired()
-            .HasColumnType("NVARCHAR")
+            .HasColumnType("TEXT")
             .HasMaxLength(180);
 
         builder.Property(x => x.Price)
             .IsRequired()
-            .HasColumnType("MONEY");
+            .HasColumnType("DECIMAL(18,2)");
+
+        builder.HasIndex(x => x.Title);
+        builder.HasIndex(x => x.Slug).IsUnique();
     }
 }

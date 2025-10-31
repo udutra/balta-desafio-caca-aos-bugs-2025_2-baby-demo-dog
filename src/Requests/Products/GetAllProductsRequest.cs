@@ -1,5 +1,6 @@
 namespace BugStore.Requests.Products;
 
-public class GetAllProductsRequest : PagedRequest{
-    
-}
+public class GetAllProductsRequest(
+    int pageNumber = Configuration.DefaultPageNumber,
+    int pageSize = Configuration.DefaultPageSize)
+    : PagedRequest(pageNumber, pageSize);

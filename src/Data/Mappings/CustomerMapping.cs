@@ -11,19 +11,23 @@ public class CustomerMapping : IEntityTypeConfiguration<Customer>{
 
         builder.Property(x => x.Name)
             .IsRequired()
-            .HasColumnType("NVARCHAR")
+            .HasColumnType("TEXT")
             .HasMaxLength(150);
 
         builder.Property(x => x.Email)
             .IsRequired()
-            .HasColumnType("NVARCHAR")
+            .HasColumnType("TEXT")
             .HasMaxLength(150);
 
         builder.Property(x => x.Phone)
             .IsRequired()
-            .HasColumnType("NVARCHAR")
+            .HasColumnType("TEXT")
             .HasMaxLength(11);
         builder.Property(x => x.BirthDate)
             .IsRequired();
+
+        builder.HasIndex(x => x.Name);
+        builder.HasIndex(x => x.Email).IsUnique();
+        builder.HasIndex(x => x.Phone).IsUnique();
     }
 }

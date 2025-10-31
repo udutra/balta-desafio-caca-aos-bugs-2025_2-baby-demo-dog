@@ -8,7 +8,7 @@ public interface IHandlerProduct{
         CancellationToken cancellationToken = default);
     Task<GetProductByIdResponse> GetProductByIdAsync(GetProductByIdRequest request,
         CancellationToken cancellationToken = default);
-    Task<GetAllProductResponse> GetAllProductsAsync(GetAllProductsRequest request,
+    Task<GetAllProductsResponse> GetAllProductsAsync(GetAllProductsRequest request,
         CancellationToken cancellationToken = default);
     Task<DeleteProductResponse> DeleteProductAsync(DeleteProductRequest request,
         CancellationToken cancellationToken = default);

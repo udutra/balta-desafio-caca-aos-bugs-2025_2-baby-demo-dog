@@ -1,6 +1,8 @@
 namespace BugStore.Requests;
 
-public abstract class PagedRequest{
-    public int PageNumber { get; set; } = Configuration.DefaultPageNumber;
-    public int PageSize { get; set; } = Configuration.DefaultPageSize;
+public abstract class PagedRequest(int pageNumber = Configuration.DefaultPageNumber,
+    int pageSize = Configuration.DefaultPageSize){
+
+    public int PageNumber { get; set; } = pageNumber;
+    public int PageSize { get; set; } = pageSize;
 }

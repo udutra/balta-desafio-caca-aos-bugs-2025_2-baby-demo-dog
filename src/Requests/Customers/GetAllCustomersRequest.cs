@@ -1,5 +1,6 @@
 namespace BugStore.Requests.Customers;
 
-public class GetAllCustomersRequest : PagedRequest{
-    
-}
+public class GetAllCustomersRequest(
+    int pageNumber = Configuration.DefaultPageNumber,
+    int pageSize = Configuration.DefaultPageSize)
+    : PagedRequest(pageNumber, pageSize);
