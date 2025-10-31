@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BugStore.Handlers.Orders;
 
-public class OrdersHandler(AppDbContext context) : IHandlerOrder{
+public class OrderHandler(AppDbContext context) : IHandlerOrder{
 
     public async Task<CreateOrderResponse> CreateOrderAsync(CreateOrderRequest request,
         CancellationToken cancellationToken = default){

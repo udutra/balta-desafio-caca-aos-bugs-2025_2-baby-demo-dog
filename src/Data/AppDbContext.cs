@@ -1,3 +1,4 @@
+using System.Reflection;
 using BugStore.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,4 +10,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Product> Products { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
     public DbSet<OrderLine> OrderLines { get; set; } = null!;
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder){
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 }

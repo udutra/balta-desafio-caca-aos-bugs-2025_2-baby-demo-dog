@@ -16,9 +16,9 @@ namespace BugStore.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR", maxLength: 150, nullable: false),
+                    Email = table.Column<string>(type: "NVARCHAR", maxLength: 150, nullable: false),
+                    Phone = table.Column<string>(type: "NVARCHAR", maxLength: 11, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -31,10 +31,10 @@ namespace BugStore.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
+                    Title = table.Column<string>(type: "NVARCHAR", maxLength: 180, nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Slug = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false)
+                    Slug = table.Column<string>(type: "NVARCHAR", maxLength: 180, nullable: false),
+                    Price = table.Column<decimal>(type: "MONEY", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,7 +46,7 @@ namespace BugStore.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    CustomerId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CustomerId = table.Column<Guid>(type: "VARCHAR", maxLength: 160, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
@@ -68,8 +68,8 @@ namespace BugStore.Data.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     OrderId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    Total = table.Column<decimal>(type: "TEXT", nullable: false),
-                    ProductId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    Total = table.Column<decimal>(type: "DECIMAL", nullable: false),
+                    ProductId = table.Column<Guid>(type: "VARCHAR", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {

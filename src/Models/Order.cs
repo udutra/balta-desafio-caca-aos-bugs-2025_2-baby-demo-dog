@@ -1,10 +1,22 @@
+using System.Text.Json.Serialization;
+
 namespace BugStore.Models;
 
-public class Order(Guid customerId, Customer customer, List<OrderLine> lines){
-    public Guid Id { get; set; } = Guid.CreateVersion7();
-    public Guid CustomerId { get; set; } = customerId;
-    public Customer Customer { get; set; } = customer;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+public class Order{
+    public Guid Id { get; set; }
+    public Guid CustomerId { get; set; }
+    public Customer Customer { get; set; }
+    public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
-    public List<OrderLine> Lines { get; set; } = lines;
+    public List<OrderLine> Lines { get; set; }
+
+    private Order() { }
+
+    public Order(Guid customerId, Customer customer, List<OrderLine> lines){
+        Id = Guid.CreateVersion7();
+        CustomerId = customerId;
+        Customer = customer;
+        Lines = lines;
+        CreatedAt = DateTime.UtcNow;
+    }
 }

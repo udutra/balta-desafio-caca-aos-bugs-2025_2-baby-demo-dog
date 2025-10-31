@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BugStore.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251025211014_v1")]
+    [Migration("20251031203813_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -31,19 +31,22 @@ namespace BugStore.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(150)
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(150)
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(11)
+                        .HasColumnType("NVARCHAR");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("BugStore.Models.Order", b =>
@@ -56,7 +59,8 @@ namespace BugStore.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CustomerId")
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(160)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
@@ -65,7 +69,7 @@ namespace BugStore.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("BugStore.Models.OrderLine", b =>
@@ -78,13 +82,14 @@ namespace BugStore.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("ProductId")
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(160)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Total")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("DECIMAL");
 
                     b.HasKey("Id");
 
@@ -92,7 +97,7 @@ namespace BugStore.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderLines");
+                    b.ToTable("OrderLines", (string)null);
                 });
 
             modelBuilder.Entity("BugStore.Models.Product", b =>
@@ -106,19 +111,21 @@ namespace BugStore.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("MONEY");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(180)
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(180)
+                        .HasColumnType("NVARCHAR");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("BugStore.Models.Order", b =>
